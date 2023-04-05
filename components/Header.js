@@ -2,16 +2,35 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const HeaderDiv = styled.div`
-  color: #f00;
   border: 10px solid #f00;
   padding: 30px;
   background-color: #f00;
+  display: flex;
+  gap: 20px;
+
+  & span {
+    font-size: 30px;
+  }
+`;
+
+const StyledLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+  border: ${({ borderSize }) => borderSize}px solid yellow;
+  font-size: ${({ big }) => (big ? "20px" : "12px")};
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export default () => (
   <HeaderDiv>
-    <Link href="/">Anasayfa</Link>
+    <StyledLink href="/" borderSize={20}>Anasayfa</StyledLink>
 
-    <Link href="/about">Hakkımızda</Link>
+    <StyledLink href="/about" big borderSize={10}>
+      Hakkımızda
+    </StyledLink>
+
+    <span>Ek açıklamalar</span>
   </HeaderDiv>
 );
