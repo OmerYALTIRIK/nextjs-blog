@@ -16,7 +16,7 @@ const HeaderDiv = styled.div`
 const StyledLink = styled(Link)`
   color: #fff;
   text-decoration: none;
-  border: ${({ borderSize }) => borderSize}px solid yellow;
+  border: ${({ bordersize }) => bordersize}px solid yellow;
   font-size: ${({ big }) => (big ? "20px" : "12px")};
   &:hover {
     text-decoration: underline;
@@ -25,9 +25,11 @@ const StyledLink = styled(Link)`
 
 export default () => (
   <HeaderDiv>
-    <StyledLink href="/" borderSize={20}>Anasayfa</StyledLink>
+    <StyledLink href="/" bordersize={20}>
+      Anasayfa
+    </StyledLink>
 
-    <StyledLink href="/about" big borderSize={10}>
+    <StyledLink href="/about" big="true" bordersize={10}>
       Hakkımızda
     </StyledLink>
 
