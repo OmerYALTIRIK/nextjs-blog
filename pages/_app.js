@@ -7,8 +7,12 @@ const GlobalStyle = createGlobalStyle`
     background-color: #333;
     color: #fff;
     a { 
-    text-decoration: none;
-   }
+      color: #fff;
+      text-decoration: none;
+      &:hover {
+        color: rgba(255, 255, 255, 0.7)
+      }
+    }
   }
 `;
 
