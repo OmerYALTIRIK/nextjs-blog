@@ -29,8 +29,6 @@ export default () => {
 
   let foundItem = data.find((dataItem) => dataItem.slug === slug);
 
-  console.log(foundItem);
-
   if (!foundItem) {
     return <Error statusCode={404} />;
   }
