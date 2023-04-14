@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import Error from 'next/error';
+import { useRouter } from "next/router";
+import Error from "next/error";
 import Layout from "../../components/Layout";
 
 const data = [
@@ -24,15 +24,15 @@ const data = [
 ];
 
 export default () => {
-  const router = useRouter()
-  const { slug } = router.query
+  const router = useRouter();
+  const { slug } = router.query;
 
   let foundItem = data.find((dataItem) => dataItem.slug === slug);
 
   console.log(foundItem);
 
   if (!foundItem) {
-    return <Error statusCode={404} />
+    return <Error statusCode={404} />;
   }
 
   return (
