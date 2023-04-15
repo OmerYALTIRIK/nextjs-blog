@@ -1,8 +1,6 @@
 import fs from "fs";
 import matter from "gray-matter";
 import md from "markdown-it";
-import { useRouter } from "next/router";
-import Error from "next/error";
 import Layout from "../../components/Layout";
 
 export default ({ frontmatter, content }) => {
