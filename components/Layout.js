@@ -42,7 +42,7 @@ export default ({ title, children }) => (
     <Footer>
       <FooterInner>
         <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">
-          Powered by vercel
+          Powered by vercel - #Tarih#
         </a>
       </FooterInner>
     </Footer>
