@@ -4,6 +4,7 @@ import styled from "styled-components";
 const BodyDiv = styled.div`
   margin: 0;
   padding: 0;
+  /* margin-bottom: 50px; */
 `;
 
 const Footer = styled.footer`
