@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node script/updateData.js && next build",
+    "build": "next build",
     "start": "next start",
     "export": "next build & next export"
   },
