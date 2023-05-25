@@ -22,12 +22,8 @@ export default ({ posts }) => {
       Burada yazılar yer alacak
       <BlogWrapper>
         {posts.map((post) => {
-          // extract slug and frontmatter from post
           const { slug, frontmatter } = post;
-          // extract frontmatter properties
           const { title, author, category, date, bannerImage, tags } = frontmatter;
-
-          //JSX for individual blog listing
           return (
             <article key={title}>
               <Link href={`/blog/${slug}`}>
@@ -43,26 +39,28 @@ export default ({ posts }) => {
   );
 };
 
-export async function getStaticProps() {
-  // get list of files from posts folder
-  const files = fs.readdirSync("posts");
-
-  // get frontmatter & slug from each post
-  const posts = files.map((fileName) => {
-    const slug = fileName.replace(".md", "");
-    const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8");
-    const { data: frontmatter } = matter(readFile);
-
-    return {
-      slug,
-      frontmatter,
+export async function getServerSideProps() { // getStaticProps yerine getServerSideProps kullanıldı SSR için.
+  const files = fs.readdirSync("posts"); // posts klasöründeki dosyaları oku ve files değişkenine ata. (Array)
+  const posts = files.map((fileName) => { // files array'indeki her bir dosya için aşağıdaki işlemleri yap.
+    const slug = fileName.replace(".md", ""); // dosya adından .md uzantısını kaldır ve slug değişkenine ata.
+    const readFile = fs.readFileSync(`posts/${fileName}`, "utf-8"); // posts klasöründeki dosyayı oku ve 
+    //readFile değişkenine ata. (String) (utf-8 ile türkçe karakter sorunu çözüldü) burada readFileSync'de sync kısmı önemli. 
+    //Çünkü async kullanırsak dosyaları okumadan işlemlere devam eder ve hata alırız.
+    const { data: frontmatter } = matter(readFile); // readFile değişkenindeki dosyanın frontmatter kısmını al ve frontmatter değişkenine ata.
+    return { // posts array'ine aşağıdaki objeyi ekle.
+      slug, // slug değişkenini ekle. (slug: slug, kısaltılmış hali)
+      frontmatter, // frontmatter değişkenini ekle. (frontmatter: frontmatter, kısaltılmış hali)
     };
   });
-
-  // return the pages static props
-  return {
-    props: {
-      posts,
+  return { // getStaticProps'ta olduğu gibi props döndür.
+    props: { // props objesi döndür.
+      posts, // posts array'ini döndür.
     },
   };
 }
+`yukarıdaki kodlarda node.js'in fs ve matter modüllerini kullandık. fs ile dosya okuma ve yazma işlemleri yapabiliyoruz. 
+  matter ile de dosyaların frontmatter kısmını okuyabiliyoruz. (frontmatter kısmı dosyaların başında yer alan ve dosya 
+  hakkında bilgi veren kısım. Örneğin: title, author, date, category, tags, bannerImage gibi bilgileri içeriyor.) 
+  fs ve matter modüllerini kullanarak posts klasöründeki dosyaları okuyup, frontmatter kısmını alıp, posts array'ine ekledik. 
+  Daha sonra da posts array'ini props olarak döndürdük. Böylece posts array'ini blog sayfasında kullanabileceğiz.`
+
